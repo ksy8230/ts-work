@@ -29,7 +29,7 @@ printMe(ai);
 class Person2 implements IPerson {
     constructor(public name: string, public age: number) {}
 }
-let jack2: Person2 = new Person2('jack2', 24)
+let jack2: IPerson = new Person2('jack2', 24)
 // 2
 class Person3 {
     name: string
@@ -40,3 +40,16 @@ class Person3 {
     }
 }
 let jack3 : Person3 = new Person3('jack3', 24)
+
+// 클래스 상속
+abstract class AbstractPerson5 {
+    abstract name: string
+    constructor(public age?: number) {}
+}
+// 상속 받는 클래스는 super 키워드를 호출해야 함
+class Person5 extends AbstractPerson5 {
+    constructor(public name: string, public age?: number) {
+        super(age)
+    }
+}
+let jack5: Person5 = new Person5('jack5', 25)
