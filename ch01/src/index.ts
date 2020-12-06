@@ -58,3 +58,10 @@ let jack5: Person5 = new Person5('jack5', 25)
 let obj: object = {name : 'jack'};
 // let name1 = obj.name; => error : name 속성값이 없다
 let name1 = (<IPerson>obj).name;
+
+// 함수 void 타입
+function printMe2(name: string, age: number): void {
+    console.log('void')
+}
+// 아래 함수의 시그니쳐는 (string, number) => void
+let printMe3: (string, number) => void = function (name: string, age: number): void {}
