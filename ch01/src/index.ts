@@ -21,3 +21,22 @@ function printMe(me: {name: string, age: number, etc?:boolean}) {
 }
 
 printMe(ai);
+
+// 클래스 생성자
+// Person3을 함축한 것이 Person3
+
+// 1
+class Person2 {
+    constructor(public name: string, public age: number) {}
+}
+let jack2: Person2 = new Person2('jack2', 24)
+// 2
+class Person3 {
+    name: string
+    age: number
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+}
+let jack3 : Person3 = new Person3('jack3', 24)
