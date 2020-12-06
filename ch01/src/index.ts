@@ -53,3 +53,8 @@ class Person5 extends AbstractPerson5 {
     }
 }
 let jack5: Person5 = new Person5('jack5', 25)
+
+// 타입 변환
+let obj: object = {name : 'jack'};
+// let name1 = obj.name; => error : name 속성값이 없다
+let name1 = (<IPerson>obj).name;
