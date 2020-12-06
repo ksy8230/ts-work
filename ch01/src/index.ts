@@ -64,4 +64,7 @@ function printMe2(name: string, age: number): void {
     console.log('void')
 }
 // 아래 함수의 시그니쳐는 (string, number) => void
-let printMe3: (string, number) => void = function (name: string, age: number): void {}
+// type 키워드로 타입 별칭 만들기
+type stringNumberFunc = (string, number) => void;
+let printMe3: stringNumberFunc = function (name: string, age: number): void {}
+
