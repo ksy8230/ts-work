@@ -26,7 +26,7 @@ printMe(ai);
 // Person3을 함축한 것이 Person3
 
 // 1
-class Person2 {
+class Person2 implements IPerson {
     constructor(public name: string, public age: number) {}
 }
 let jack2: Person2 = new Person2('jack2', 24)
