@@ -108,3 +108,21 @@ export class calculator {
 let cal: calculator = new calculator;
 let result = cal.add(1).add(2).multiple(2).value;
 console.log(result);
+
+// for in 문
+let names = ['1', '2', '3']
+for(let index in names) {
+    const name = names[index]
+    console.log(`for in 문 ${name}`);
+}
+
+// for in 문 객체
+let jack = {name: 'jack', age: 32}
+for(let property in jack) {
+    console.log(`${property}: ${jack[property]}`)
+}
+
+// for of 문
+for(let name of ['jack', 'jane', 'steve']){
+    console.log(name)
+}
