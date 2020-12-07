@@ -65,3 +65,27 @@ function printMe2(name: string, age: number): void {
 }
 // 아래 함수의 시그니쳐는 (string, number) => void
 let printMe3: (string, number) => void = function (name: string, age: number): void {}
+
+// 클래스 메서드 구문
+// A와 B 클래스는 같은 기능을 한다
+export class A {
+    value : number = 1
+    methods : () => void = () : void => {
+        console.log(`${this.value}`)
+    }
+}
+
+export class B {
+    constructor(public value: number = 2) {
+
+    }
+    methods (): void {
+        console.log(`${this.value}`)
+    }
+}
+
+let a: A = new A;
+a.methods()
+
+let b: B = new B;
+b.methods()
