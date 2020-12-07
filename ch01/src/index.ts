@@ -3,6 +3,7 @@ import IPerson from "./person/IPerson";
 import { makePerson } from "./person/Person";
 import Chance from 'chance';
 import * as R from 'ramda';
+import { arrayLength } from "./utills/makeRandomNumber";
 
 const chance = new Chance();
 let persons : IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()));
@@ -126,3 +127,12 @@ for(let property in jack) {
 for(let name of ['jack', 'jane', 'steve']){
     console.log(name)
 }
+
+// 배열의 타입 지정
+let numArray : number[] = [1,2,3]
+let strArray : string[] = ['1', '2', '3']
+
+console.log(
+    arrayLength(numArray), 
+    arrayLength(strArray)
+)
