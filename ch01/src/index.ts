@@ -89,3 +89,22 @@ a.methods()
 
 let b: B = new B;
 b.methods()
+
+// 메서드 체인
+export class calculator {
+    constructor(public value: number = 0) {
+
+    }
+    add(value: number) {
+        this.value += value
+        return this;
+    }
+    multiple(value: number) {
+        this.value *= value
+        return this;
+    }
+}
+
+let cal: calculator = new calculator;
+let result = cal.add(1).add(2).multiple(2).value;
+console.log(result);
