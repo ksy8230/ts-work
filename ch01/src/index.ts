@@ -5,6 +5,7 @@ import Chance from 'chance';
 import * as R from 'ramda';
 import { arrayLength, pureDelete, pureSort, doSomething } from "./utills/makeRandomNumber";
 import Iterable from "./Iterable";
+import Generator from "./generator";
 
 const chance = new Chance();
 let persons : IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()));
@@ -159,3 +160,5 @@ console.log(result2, errorMessage);
 
 // 반복기
 Iterable();
+// 생성기
+Generator();
