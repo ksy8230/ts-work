@@ -17,3 +17,13 @@ export const pureSort = <T>(array: readonly T[]): T[] => {
 // 배열의 filter 메서드를 순수함수로 구현
 export const pureDelete = <T>(array: readonly T[], cb: (val: T, index?:number) => boolean): T[] => 
 array.filter((val, index) => cb(val, index) == false); 
+
+// 튜플에 타입 별칭 사용
+export type ResultType = [boolean, string];
+export const doSomething = (): ResultType => {
+    try {
+        throw new Error('Some Error occurs...')
+    } catch (e) {
+        return [false, e.message]
+    }
+}

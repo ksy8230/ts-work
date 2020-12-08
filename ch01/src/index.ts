@@ -3,7 +3,7 @@ import IPerson from "./person/IPerson";
 import { makePerson } from "./person/Person";
 import Chance from 'chance';
 import * as R from 'ramda';
-import { arrayLength, pureDelete, pureSort } from "./utills/makeRandomNumber";
+import { arrayLength, pureDelete, pureSort, doSomething } from "./utills/makeRandomNumber";
 
 const chance = new Chance();
 let persons : IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()));
@@ -151,3 +151,7 @@ const mixedArray = [
 ];
 const objectOnly = pureDelete(mixedArray, (val) => Array.isArray(val));
 console.log(mixedArray, objectOnly);
+
+// 튜플에 적용하는 비구조화 할당
+const [result2, errorMessage] = doSomething();
+console.log(result2, errorMessage);
