@@ -4,6 +4,7 @@ import { makePerson } from "./person/Person";
 import Chance from 'chance';
 import * as R from 'ramda';
 import { arrayLength, pureDelete, pureSort, doSomething } from "./utills/makeRandomNumber";
+import Iterable from "./Iterable";
 
 const chance = new Chance();
 let persons : IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()));
@@ -155,3 +156,6 @@ console.log(mixedArray, objectOnly);
 // 튜플에 적용하는 비구조화 할당
 const [result2, errorMessage] = doSomething();
 console.log(result2, errorMessage);
+
+// 반복기
+Iterable();
