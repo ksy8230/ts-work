@@ -136,3 +136,8 @@ console.log(
     arrayLength(numArray), 
     arrayLength(strArray)
 )
+
+// readonly
+function forcePure(array:readonly number[]): number {
+    return array.length;
+}
