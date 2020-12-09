@@ -6,6 +6,7 @@ import * as R from 'ramda';
 import { arrayLength, pureDelete, pureSort, doSomething } from "./utills/makeRandomNumber";
 import Iterable from "./Iterable";
 import Generator from "./generator";
+import Async from "./async";
 
 const chance = new Chance();
 let persons : IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()));
@@ -162,3 +163,5 @@ console.log(result2, errorMessage);
 Iterable();
 // 생성기
 Generator();
+// 비동기
+Async();
