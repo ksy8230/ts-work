@@ -43,6 +43,18 @@ const Async = () => {
     // asyncTest2()
     console.log('Promise 객체로 사용해 보기')
     asyncTest1().then(() => asyncTest2())
+    // async 함수와 Promise.all
+    const readFilesAll = async (filename: string[]) => {
+        return await Promise.all(
+            filename.map(v => readFilePromise(v))
+        )
+    };
+    readFilesAll(['src/async/test.json', 'src/async/test2.json'])
+    .then(([file1, file2]: string[]) => {
+        console.log('file 1', file1)
+        console.log('file 2', file2)
+    })
+    .catch(error => console.log(error))
 
 };
 
