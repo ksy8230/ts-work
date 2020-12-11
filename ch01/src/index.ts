@@ -7,6 +7,7 @@ import { arrayLength, pureDelete, pureSort, doSomething } from "./utills/makeRan
 import Iterable from "./Iterable";
 import Generator from "./generator";
 import Async from "./async";
+import Compose from "./05.compose";
 
 const chance = new Chance();
 let persons : IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()));
@@ -165,3 +166,6 @@ Iterable();
 Generator();
 // 비동기
 Async();
+// 함수조합 : compose
+console.log('함수조합 : compose')
+Compose();
