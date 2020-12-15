@@ -11,12 +11,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chance": "^1.1.1",
     "@types/node": "^12.12.26",
     "@types/ramda": "^0.26.40",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "chance": "^1.1.7",
     "ramda": "^0.26.1"
   }
 }
