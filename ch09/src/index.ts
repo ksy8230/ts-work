@@ -27,6 +27,8 @@ console.log(person);
 // Lens
 import * as R from 'ramda';
 import {makeLens, getter, setter, setterUsingFunc} from './Lens/lens';
+import ToPairFromPair from "./toPairFromPair";
+import KeysValuesZipObj from "./KeysValuesZipObj";
 
 const nameLens = makeLens('name');
 const getName = getter(nameLens);
@@ -57,3 +59,6 @@ console.log(
     getLongitude(newPersonWithLongitude), 
     newPersonWithLongitude
 )
+
+ToPairFromPair();
+KeysValuesZipObj();
