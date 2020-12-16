@@ -13,6 +13,7 @@ Trim_tolowe_split_toCamelCase();
 import {ICoordinates, makeRandomICoordinates} from './model/coordinates';
 import {ILocation, makeRandomILocation} from './model/location';
 import {IPerson, makeRandomIPerson} from './model/person';
+import Assoc from "./Lens/assoc";
 
 const coordinates: ICoordinates = makeRandomICoordinates();
 console.log(coordinates);
@@ -22,3 +23,6 @@ console.log(location);
 
 const person: IPerson = makeRandomIPerson();
 console.log(person);
+
+// Lens
+Assoc(); // test name
