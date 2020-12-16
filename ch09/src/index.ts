@@ -25,4 +25,35 @@ const person: IPerson = makeRandomIPerson();
 console.log(person);
 
 // Lens
-Assoc(); // test name
+import * as R from 'ramda';
+import {makeLens, getter, setter, setterUsingFunc} from './Lens/lens';
+
+const nameLens = makeLens('name');
+const getName = getter(nameLens);
+const setName = setter(nameLens);
+const setNameUsingFunc = setterUsingFunc(nameLens);
+console.log(getName)
+
+const person2: IPerson = makeRandomIPerson();
+const name = getName(person2);
+console.log(name) //
+const newPerson = setName('test person name')(person);
+console.log(newPerson);
+const anotherPerson = setNameUsingFunc(name => `Mr. ${name}`)(person);
+const capitalPerson = setNameUsingFunc(R.toUpper)(person);
+console.log(
+    name, getName(newPerson), 
+    getName(anotherPerson), 
+    getName(capitalPerson)
+)
+
+// IPerson 객체의 longitude 속성값을 접근하려면 person.location.coordinates.longitude와 같이
+// 접근해야 한다. 이런 중첩 속성을 람다라이브러리에서는 R.lensPath 함수를 사용한다
+const longitudeLens = R.lensPath(['location', 'coordinates', 'longitude']);
+const getLongitude = getter(longitudeLens);
+const setLongitude = setter(longitudeLens);
+const newPersonWithLongitude = setLongitude(0.12143)(person);
+console.log(
+    getLongitude(newPersonWithLongitude), 
+    newPersonWithLongitude
+)
