@@ -29,6 +29,7 @@ import * as R from 'ramda';
 import {makeLens, getter, setter, setterUsingFunc} from './Lens/lens';
 import ToPairFromPair from "./toPairFromPair";
 import KeysValuesZipObj from "./KeysValuesZipObj";
+import Ramda_array from "./Ramda_array";
 
 const nameLens = makeLens('name');
 const getName = getter(nameLens);
@@ -62,3 +63,5 @@ console.log(
 
 ToPairFromPair();
 KeysValuesZipObj();
+
+Ramda_array();
