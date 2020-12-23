@@ -1,4 +1,5 @@
 import { type } from "os";
+import CalcAreaTest from "./calcArea-test";
 import { printValue, Valuable } from "./printValue";
 
 printValue(new Valuable<number>(1)); // 1
@@ -38,4 +39,6 @@ console.log(
 // console.log(
 //     pick(obj, ['nam', 'age'])
 // )
+
+CalcAreaTest();
 
