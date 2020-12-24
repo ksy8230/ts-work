@@ -1,6 +1,7 @@
 import { type } from "os";
 import CalcAreaTest from "./calcArea-test";
 import { printValue, Valuable } from "./printValue";
+import TypeGuard from "./TypeGuard/BirdAndFish";
 
 printValue(new Valuable<number>(1)); // 1
 printValue(new Valuable<boolean>(true)); // true
@@ -41,4 +42,7 @@ console.log(
 // )
 
 CalcAreaTest();
+
+// 타입 가드
+TypeGuard();
 
