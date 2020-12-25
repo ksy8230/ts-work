@@ -1,6 +1,7 @@
 import { type } from "os";
 import CalcAreaTest from "./calcArea-test";
 import { Calculator } from "./FBound/Calculator";
+import Nullable from "./Nullable";
 import { printValue, Valuable } from "./printValue";
 import TypeGuard from "./TypeGuard/BirdAndFish";
 
@@ -50,3 +51,6 @@ TypeGuard();
 // F바운드 다형성
 const value = (new Calculator(1)).add(2).value(); 
 console.log(value); // 3
+
+// Nullable
+Nullable();

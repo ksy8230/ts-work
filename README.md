@@ -55,3 +55,11 @@
 - is 연산자 활용
 2. F-바운드 다형성
 - 자신을 구현하거나 나를 상속하는 타입을 반환하는 타입
+3. nullable 타입
+- 타입스크립트에서 undefined와 null은 서로 호환되는 타입이다.
+- 옵션 체이닝 연산자 (물음표 기호와 점 기호를 연이어 쓰는 ?. 연산자) 를 이용해 nullable 타입을 표현한다.
+- 널 병합 연산자 코드는 옵션 체이닝 연산자와 함께 아래와 같이 undefined를 반환하는 대신 0을 반환하도록 초기값을 설정한다.
+```
+let value = person?.location?.coords?.longitude ?? 0;
+console.log(value) // 0
+```
