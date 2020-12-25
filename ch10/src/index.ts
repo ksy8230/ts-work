@@ -1,5 +1,6 @@
 import { type } from "os";
 import CalcAreaTest from "./calcArea-test";
+import { Calculator } from "./FBound/Calculator";
 import { printValue, Valuable } from "./printValue";
 import TypeGuard from "./TypeGuard/BirdAndFish";
 
@@ -46,3 +47,6 @@ CalcAreaTest();
 // 타입 가드
 TypeGuard();
 
+// F바운드 다형성
+const value = (new Calculator(1)).add(2).value(); 
+console.log(value); // 3
