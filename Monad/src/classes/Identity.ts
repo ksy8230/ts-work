@@ -1,8 +1,15 @@
+import { IChain } from "../interfaces/IChain";
+import { IApply } from "../interfaces/IApply";
 import { IFunctor } from "../interfaces/IFunctor";
 import { ISetoid } from "../interfaces/ISetoid";
 
-export class Identity<T> implements ISetoid<T>, IFunctor<T> {
+export class Identity<T> implements ISetoid<T>, IFunctor<T>, IApply<T>, IChain<T> {
     constructor(private _value: T) {}
+
+    static of<T>(value: T): Identity<T> { 
+        return new Identity<T>(value)
+    }
+
     // IValuable
     value() {
         return this._value;
@@ -19,4 +26,15 @@ export class Identity<T> implements ISetoid<T>, IFunctor<T> {
     map<U>(fn: (x: T) => U) {
         return new Identity<U>(fn(this.value()))
     }
+    // IApply
+    ap<U>(b: U) {
+        const f = this.value() 
+        if(f instanceof Function)
+            return Identity.of<U>((f as Function)(b))
+    }
+    // IChain
+    chain<U>(fn: (T) => U): U {
+        return fn(this.value())
+    }
+    
 }
