@@ -18,3 +18,33 @@ console.log(
     Identity.of(1).map(value => `this is ${value}`).value(),
     Identity.of(1).chain(value => Identity.of(`this is ${value}`)).value()
   )
+
+// 모나드 왼쪽 법칙 테스트
+const a = 1;
+const f = a => a * 2;
+console.log(
+    Identity.of(a).chain(f) == f(a)
+)
+console.log( f(a) ) // 2
+console.log( Identity.of(a).chain(f) ) // 2
+
+// 모나드 오른쪽 법칙 테스트
+const m = Identity.of(1);
+
+console.log(
+    m.chain(Identity.of).equals(m)
+)
+
+console.log(m) // Identity { _value: 1 }
+console.log(m.chain(Identity.of)) // Identity { _value: 1 }
+
+type IPerson = {name : string, age: number};
+const jack = Identity.of(['jack', 32]);
+console.log(jack) // Identity { _value: [ 'jack', 32 ] }
+
+console.log(jack
+                .map(([name, age]) => ({name, age}))   // Identity { _value: { name: 'jack', age: 32 } }
+                .chain((p:IPerson) => Identity.of(p))  // Identity { _value: [ 'jack', 32 ] }
+                .map(({name, age}) => [name, age])     // Identity { _value: { name: 'jack', age: 32 } }
+                .value()[0] == jack.value()[0]         // true
+            )
