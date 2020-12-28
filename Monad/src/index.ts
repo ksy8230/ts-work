@@ -42,9 +42,9 @@ type IPerson = {name : string, age: number};
 const jack = Identity.of(['jack', 32]);
 console.log(jack) // Identity { _value: [ 'jack', 32 ] }
 
-console.log(jack
-                .map(([name, age]) => ({name, age}))   // Identity { _value: { name: 'jack', age: 32 } }
-                .chain((p:IPerson) => Identity.of(p))  // Identity { _value: [ 'jack', 32 ] }
-                .map(({name, age}) => [name, age])     // Identity { _value: { name: 'jack', age: 32 } }
+console.log('jack', jack
+                .map(([name, age]) => ({name, age}))      // Identity { _value: { name: 'jack', age: 32 } }
+                .chain((p:IPerson) => Identity.of(p))     // Identity { _value: { name: 'jack', age: 32 } }
+                .map(({name, age}) => [name, age])        // Identity { _value: [ 'jack', 32 ] }
                 .value()[0] == jack.value()[0]         // true
             )
