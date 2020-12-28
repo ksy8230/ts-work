@@ -63,3 +63,10 @@
 let value = person?.location?.coords?.longitude ?? 0;
 console.log(value) // 0
 ```
+### 모나드
+- 코드 설계 패턴으로 몇 개의 인터페이스를 구현한 클래스를 의미
+- 모나드 클래스의 조건은 아래와 같다
+- 1. 펑터 (Functor) : map이라는 인스턴스 메서드를 갖는 클래스
+- 2. 어플라이 (Apply) : 펑터이면서 ap이라는 인스턴스 메서드를 갖는 클래스
+- 3. 애플리커티브 (Applicative) : 어플라이이면서 of라는 클래스 메서드를 갖는 클래스
+- 4. 체인 (Chain) : 애클리커티브이면서 chain이라는 메서드를 갖는 클래스
