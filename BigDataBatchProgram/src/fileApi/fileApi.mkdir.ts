@@ -8,7 +8,7 @@ export const mkdir = (dirname: string): Promise<string> =>
     if (alreadyExists) resolve(dirname)
     else {
       mkdirp(dirname)
-        .then(dirname => resolve(dirname)) // 또는 간단하게 .then(resolve)
+        .then(_dirname => resolve(_dirname)) // 또는 간단하게 .then(resolve)
         .catch(error => reject(error)) // 또는 간단하게 .catch(reject)
     }
   })
