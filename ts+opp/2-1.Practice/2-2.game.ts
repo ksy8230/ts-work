@@ -36,8 +36,6 @@ function move(name:Movename):void | never{
         default:
             throw new Error(`unknown: ${name}`)
     }
-    
-    
 }
 
 
