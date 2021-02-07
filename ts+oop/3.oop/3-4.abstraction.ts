@@ -18,8 +18,13 @@
     interface CoffeMaker {
         makeCoffee(shots:number):CoffeeCup;
     }
+    interface CommercialCoffeeMaker {
+        makeCoffee(shots: number):CoffeeCup;
+        fillCoffeeBeans(beans: number):void;
+        clean(): void;
+    }
 
-    class CoffeeMachine implements CoffeMaker {
+    class CoffeeMachine implements CoffeMaker, CommercialCoffeeMaker {
         private static BEANS_GRAMM_PER_SHOT = 7;
         private coffeeBeans = 0;
 
@@ -64,26 +69,34 @@
             }
             this.coffeeBeans += beans;
         }
+
+        clean() {
+            console.log('기기 청소합니다. 🌈')
+        }
     
     }
+    class AmateurUser {
+        constructor(private machine: CoffeMaker) {}
+        makeCoffe() {
+            const coffee = this.machine.makeCoffee(2);
+            console.log(coffee);
+        }
+    }
 
-
-    const maker:CoffeeMachine = CoffeeMachine.makeMachine(10);
-    maker.fillCoffeeBeans(30);
-    maker.makeCoffee(2);
-
-    const maker2:CoffeMaker = CoffeeMachine.makeMachine(10);
-    /**
-     * 인터페이스 CoffeMaker에 makeCoffee만 있기 때문에 
-     * 다른 메서드들은 아래와 같이 사용이 불가하다
-     * = 인터페이스를 이용하면 인스턴스의 호출 가능 메서드들을
-     * 내가 원하는 만큼만 허용을 할 수 있다
-     */
-    // maker2.fillCoffeeBeans(30);
-    // maker2.makeCoffee(2);
-
-
+    class ProBarista {
+        constructor(private machine: CommercialCoffeeMaker) {}
+        makeCoffe() {
+            const coffee = this.machine.makeCoffee(2);
+            console.log(coffee);
+            this.machine.fillCoffeeBeans(40);
+            this.machine.clean();
+        }
+    }
     
-    
+    const maker:CoffeeMachine = CoffeeMachine.makeMachine(32);
+    const amateur = new AmateurUser(maker); // CoffeMaker 인터페이스 범위 사용 가능
+    const pro = new ProBarista(maker); // CommercialCoffeeMaker 인터페이스 범위 사용 가능
+    // amateur.makeCoffe();
+    pro.makeCoffe();
 
 }
