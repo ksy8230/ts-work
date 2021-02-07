@@ -15,8 +15,32 @@
 
 
 ##  🛠 타입스크립트와 개발환경 만들기
-
-tsconfig.json 옵션
+vscode (편집기) 설치   
+nodejs 설치   
+package.json   
+```javascript
+{
+  "name": "09-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    // npm run dev -> src 내에 있는 ts 파일 실행
+    "dev": "ts-node src", 
+    // ts를 js로 컴파일해서 dist폴더에 변환된 파일들 생성
+    "build": "tsc && node dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.26",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  }
+}
+```
+tsconfig.json 옵션 설정
 
 <details>
 <summary>옵션 리스트 설명</summary>
