@@ -46,3 +46,29 @@ const bobAfterPay = pay(bob);
 
 const eliieAfterPay2 = pay2(ellie);
 eliieAfterPay2.workFullTime();
+
+////
+
+const obj = {
+  name: 'ellie',
+  age: 20,
+};
+
+const obj2 = {
+  animal: '❤',
+};
+
+/**
+ *
+ * @param obj : 어떤 T라는 타입을 갖고
+ * @param key : 어떤 K라는 타입을 갖는다
+ *
+ * 다만 K는 아무 타입이 아니라 T의 키 타입에만 한정시킨다
+ * 그리고 리턴값도 아무 타입이 아니라 T[K] 타입이다 👍
+ */
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+console.log(getValue(obj, 'name')); // 'ellie'
+console.log(getValue(obj2, 'animal')); // '❤'
