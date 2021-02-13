@@ -64,24 +64,15 @@ downlevellteration : generator 문법을 사용하기 위해 `true` 설정
 noImpliciAny : false 설정 시 타입을 지정하지 않더라도 문제로 인식하지 않음
 </details>
 
-## 제네릭 프로그래밍
+### 제네릭 프로그래밍
+[함수형 예시](https://github.com/ksy8230/ts-work/commit/c3e5df591e0e1405141d8c2861b993f84447ce11#diff-98c5f3b7ea5425b3af6737542b0e09c6d146bc05def735af02ab4a0269db46aa)
 
-타입 가드   
-- 타입을 변환하지 않은 코드 때문에 프로그램이 비정상으로 종료되는 상황을 보호
-- is 연산자 활용
+[클래스형 예시](https://github.com/ksy8230/ts-work/commit/37ebf3be2c45da272e6ddc2c50fe455601e3f836#diff-6d1736f167db480fd7f3e7cc85f035ea3716d395064a0732f6fd30e48ea94f27)
 
-F-바운드 다형성
-- 자신을 구현하거나 나를 상속하는 타입을 반환하는 타입
+[조건부 제네릭 예시](https://github.com/ksy8230/ts-work/commit/50da3648ad258817892165c4d6cc000d4ca395ec)
 
-nullable 타입
-- 타입스크립트에서 undefined와 null은 서로 호환되는 타입이다.
-- 옵션 체이닝 연산자 (물음표 기호와 점 기호를 연이어 쓰는 ?. 연산자) 를 이용해 nullable 타입을 표현한다.
-- 널 병합 연산자 코드는 옵션 체이닝 연산자와 함께 아래와 같이 undefined를 반환하는 대신 0을 반환하도록 초기값을 설정한다.
-
-    ```typescript
-    let value = person?.location?.coords?.longitude ?? 0;
-    console.log(value) // 0
-    ```
+1. 타입을 보장하면서 재사용성을 높여주는 타입 지정 방식이다
+2. 함수나 클래스에서 사용할 타입을 그 함수나 클래스를 사용할 때 결정하는 기법이다
 
 ### Error State
 [예시 코드](https://github.com/ksy8230/ts-work/commit/89fa18cb32e6624a4ff8109a844892a518f27407#diff-474ef08f3363240d8aef7bfe49e4f18df75b1025e661f14fbb85606df9acfa4c)
