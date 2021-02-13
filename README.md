@@ -83,6 +83,12 @@ nullable 타입
     console.log(value) // 0
     ```
 
+### Error State
+[예시 코드](https://github.com/ksy8230/ts-work/commit/89fa18cb32e6624a4ff8109a844892a518f27407#diff-474ef08f3363240d8aef7bfe49e4f18df75b1025e661f14fbb85606df9acfa4c)
+
+1. 에러 처리는 에러가 발생하는 곳보다는 에러를 읽어하는 코드에 걸어둔다
+2. 에러의 세부 사항을 전달하기 위해서 Error State를 사용하는 법
+
 ## 깊은 복사와 얕은 복사
 
 순수 함수를 구현할 때는 매개변수가 불변성을 유지해야 하므로 매개변수를 가공하려고 할 때 `깊은 복사`를 실행해 `매개변숫값이 변경되지 않게 해야 함`
