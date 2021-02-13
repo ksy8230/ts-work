@@ -64,6 +64,21 @@ downlevellteration : generator 문법을 사용하기 위해 `true` 설정
 noImpliciAny : false 설정 시 타입을 지정하지 않더라도 문제로 인식하지 않음
 </details>
 
+### 기본 타입
+[기본 타입 예시 코드](https://github.com/ksy8230/ts-work/commit/a9e8eabf52bf734c2e38c9a895fa3fa34f197a90)
+
+1. number, string, boolean, undefined, null, unknown, any, void, never, object 타입이 존재한다.
+2. undefined는 값이 있는지 없는지 결정이 안 된 상태고 단독으로 타입 지정을 하지 않는다. 데이터타입이 있고 없을 때 주로 사용하고, 함수에서 무언가를 찾을 때 리턴값으로 사용한다.
+3. null는 텅 빈 값이 있는 상태고 단독으로 타입 지정을 하지 않는다. 
+4. 알 수 없는 타입을 의미하는 unknown과 모든 타입을 허용하는 any의 사용은 지양한다
+5. void는 어떤 값도 리턴하지 않을 때 사용하고 타입 생략이 가능하다.
+6. never는 에러 핸들링을 할 때 사용한다.
+6. object는 세부 타입 지정을 하지 않기 때문에 사용을 지양한다.
+
+[차별화된 유니언 예시 코드](https://github.com/ksy8230/ts-work/commit/289909a48b20e185800da176a31e3361cabe259e#diff-ed36cc08ffd3f563c5b73015e75d4b38de411053eca3b18ae2cfb08e0eccce59)
+
+1. 어떤 타입이냐에 따라서 다르게 출력시키고 싶을 때 사용한다.
+2. 타입 엘리어스를 유니언으로 지정해 사용하고, 타입 엘리어스들이 공통된 프로퍼티를 가지게 한다.
 ### 제네릭 프로그래밍
 [함수형 예시 코드](https://github.com/ksy8230/ts-work/commit/c3e5df591e0e1405141d8c2861b993f84447ce11#diff-98c5f3b7ea5425b3af6737542b0e09c6d146bc05def735af02ab4a0269db46aa)
 
@@ -83,9 +98,11 @@ noImpliciAny : false 설정 시 타입을 지정하지 않더라도 문제로 �
 ### 객체지향 프로그래밍
 [composition 예시 코드](https://github.com/ksy8230/ts-work/commit/7b0007a269e90f1deabe2da171271e007319451c)
 
-1. composition 방식을 사용해 확장성을 가진 클래스를 만든다
-2. composition은 외부에서 주입 받아 사용하는 방식으로 `Dependency Injection`이라고 한다.
-3. 타입스크립트에서 `Dependency Injection`를 만드는 방법은 반복 혹은 공통적으로 사용하는 함수 이름을 인터페이스로 지정한 뒤 클래스에 확장(implements) 하여 사용한다.
+1. composition을 사용하는 이유는 클래스의 상속이 깊어질수록 부모 클래스를 수정하면 상속 받는 모든 자식들에게 영향을 미칠 수 있고, 타입스크립트에서는 한 가지 이상의 부모클래스를 상속 받을 수 없다.
+2. composition 방식을 사용해 확장성을 가진 클래스를 만든다.
+3. composition은 외부에서 주입 받아 사용하는 방식으로 `Dependency Injection`이라고 한다.
+4. 타입스크립트에서 `Dependency Injection`를 만드는 방법은 반복 혹은 공통적으로 사용하는 함수 이름을 인터페이스로 지정한 뒤 클래스에 확장(implements) 하여 사용한다.
+
 
 ## 깊은 복사와 얕은 복사
 
