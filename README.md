@@ -120,7 +120,14 @@ Interface는 특정한 규격을 정의하는 경우에 사용하는 것이 더 
 type은 어떤 데이터의 타입을 담을 때 사용하는 것이 정확하다. 데이터의 모습, 타입을 결정한다. 🎁
 
 ### Map Type
-type 객체 안에서 [] 배열 키를 사용하면 순차적으로 순회를 하면서 타입을 매핑해준다.
+[예시 코드](https://github.com/ksy8230/ts-work/commit/f6b1ad652f874d2d5b10ca05e577b5adef8c4d7f#diff-38cb2b6452122a39ee0afd059ae9648d26d951f5725372b9698847654ad4ecce)   
+type 객체 안에서 [] 배열 키를 사용하면 순차적으로 순회를 하면서 타입을 매핑해준다.   
+이미 지정한 타입을 optional하게 바꾸고 싶을 때 유용할 것 같다. ✨
+
+### Condition Type
+[예시 코드](https://github.com/ksy8230/ts-work/commit/eb83e3a0d946976bb0774b90b26ed3d81720aa40#diff-345f3a14dd3df6d59eda6577e7b410b3ee39a326a11fb1ea7e0743fbb65dfd22)   
+조건이 맞으면 어떤 타입을 지정한다
+
 
 ---
 ### 깊은 복사와 얕은 복사
