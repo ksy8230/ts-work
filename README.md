@@ -128,6 +128,16 @@ type 객체 안에서 [] 배열 키를 사용하면 순차적으로 순회를 �
 [예시 코드](https://github.com/ksy8230/ts-work/commit/eb83e3a0d946976bb0774b90b26ed3d81720aa40#diff-345f3a14dd3df6d59eda6577e7b410b3ee39a326a11fb1ea7e0743fbb65dfd22)   
 조건이 맞으면 어떤 타입을 지정한다
 
+### Partial, Pick, Omit Type
+[Partial 예시 코드](https://github.com/ksy8230/ts-work/commit/cc4f267e8fce01d09bf4ed51711062f56a7fea08#diff-da3a91ef35a73df98100d52f70200d2e795b7de637106f3f1f90b852dae60ee9)   
+지정한 타입의 모든 키가 선택사항으로 적용이 된다
+
+[Pick 예시 코드](https://github.com/ksy8230/ts-work/commit/38c701d3b3d73f6ec7e10b76f83f3817bf12754f#diff-cbbae8624bb8b5a51c7823eb75d757f0c91b574071d3a6cefce8ab511e584b16)   
+지정한 타입에서 특정 타입만 빼서 제한적으로 지정해 주고 싶을 때 사용한다
+
+[Omit 예시 코드](https://github.com/ksy8230/ts-work/commit/38c701d3b3d73f6ec7e10b76f83f3817bf12754f#diff-6c41de691989f1682772ee3169dc30950f3f3f884b092e2b398fdaa7f7bcc455)   
+지정한 타입에서 특정 타입만 제외시키고 지정해 주고 싶을 때 사용한다
+
 
 ---
 ### 깊은 복사와 얕은 복사
