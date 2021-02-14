@@ -104,7 +104,7 @@ noImpliciAny : false 설정 시 타입을 지정하지 않더라도 문제로 �
 4. 타입스크립트에서 `Dependency Injection`를 만드는 방법은 반복 혹은 공통적으로 사용하는 함수 이름을 인터페이스로 지정한 뒤 클래스에 확장(implements) 하여 사용한다.
 
 ### Type vs Interface 
-[예시 코드](https://github.com/ksy8230/ts-work/commit/2d0794602db0b47923eac3352e21d4d72e1d4836)   
+[예시 코드](https://github.com/ksy8230/ts-work/commit/2d0794602db0b47923eac3352e21d4d72e1d4836#diff-ecd99cca1a0053f031ca35fe1bf5a98d2c5748992c105b8ed4b078638fc7b055)   
 
 **공통점**
 1. 둘 다 객체를 정의하고 타입을 할당할 수 있다.
