@@ -17,51 +17,55 @@
 ##  🛠 타입스크립트와 개발환경 만들기3
 vscode (편집기) 설치   
 nodejs 설치   
-package.json   
-```javascript
-{
-  "name": "09-3",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    // npm run dev -> src 내에 있는 ts 파일 실행
-    "dev": "ts-node src", 
-    // ts를 js로 컴파일해서 dist폴더에 변환된 파일들 생성
-    "build": "tsc && node dist"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^12.12.26",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.7.5"
-  }
-}
+
+*tsc : ts 파일을 js 파일로 변환해 주는 명령어
+
+tsconfig.json 파일 만들기   
 ```
+tsc --init
+```
+폴더 안에 있는 모든 ts 파일들 지켜보면서 변환
+```
+tsc -w
+```
+
+
 tsconfig.json 옵션 설정
 
 <details>
 <summary>옵션 리스트 설명</summary>
 
-module : 동작 대상 플랫폼이 웹 브라우저인지 노드제이에스인지 구분해 맞는 모듈 방식으로 컴파일 하려는 목적으로 설정하는 값 (웹 브라우저에서 동작 : amd, 노드제이에스에서 동작 : commonjs)
+1. incremental : 수정된 부분만 컴파일 하겠다 (대신 디스크에 저장용량을 사용한다)   
 
-moduleResolution : module 키 값이 commonjs면 node, amd면 classic으로 지정
+2. target : 변환할 자바스크립트의 버전을 설정   
 
-target : 트랜스파일할 대상 자바스크립트의 버전을 설정
+3. module : 컴파일할 때 모듈을 어떻게 구현할 것인지 결정 (웹 브라우저에서 동작 : amd, 노드제이에스에서 동작 : commonjs)   
 
-baseUrl, outDir : 트랜스파일된 ES5 자바스크립트 파일을 저장하는 디렉터리를 설정 
+4. lib: 옵션값이 없으면 target에 있는 버전의 모든 것들을 사용 가능하고, 옵션값이 있으면 해당 라이브러리만 사용한다. (보통은 false로 둔다)   
 
-paths : 소스 파일의 import 문에서 from 부분을 해석할 때 찾아야 하는 디렉터리를 설정
+5. allowJs : 프로젝트 안에서 js를 같이 쓸 건지 결정   
+6. checkJs : js 파일에서 에러를 잡고 싶을 때 설정   
+7. jsx : react에 관련된 것을 사용할 것인지 설정   
+8. declaration : 내가 만든 코드를 다른 사람에게 제공하는 라이브러리 형식으로 바꿀 것인지 설정 (보통은 사용하지 않는다)   
+9. sourceMap : 키 값이 true면 트랜스파일 디렉터리에는 .js 이외에도 .js.map 파일이 생성, 자바스크립트 코드가 타입스크립트 코드의 어디에 해당하는지 알려주는 지표, 디버깅 시 사용 
+10. outFile : 작성한 파일을 한 파일로 합칠 때 설정   
+11. outDir : 트랜스파일된 ES5 자바스크립트 파일을 저장하는 디렉터리를 설정 
+12. composite : incremental이 true이면 이전에 빌드된 정보들을 기억해서 더 빠르게 빌드하도록 설정   
+13. tsBuildInfoFile : incremental이 true이면 관련된 정보들을 담을 수 있는 파일 지정   
+14. removeComments : 코멘트를 전부 삭제   
+15. noEmit : 에러 체크만 하고 js 변환하지 않는다   
+16. importHelpers : ts를 엄청 예전 버전의 js로 변환할 때 문제가 되는 부분들이 있을 수 있는데 이 설정을 true로 두면 코드를 더 더해서 변환을 도와줄 때 설정   
+17. isolatedModules : 각각의 파일을 다른 모듈로 변환할 때 설정   
+18. noImpliciAny : false 설정 시 타입을 지정하지 않더라도 문제로 인식하지 않음   
+19. strict : true 권장, 엄격한 확인을 하고 싶을 때 설정   
+20. downlevellteration : generator 문법을 사용하기 위해 `true` 설정
+21. moduleResolution : module 키 값이 commonjs면 node, amd면 classic으로 지정   
+22. esModuleInterop : `chance`와 같은 AMD 방식을 전제로 구현된 라이브러리는 commonjs 방식으로 동작하는 타입스크립트 코드에 혼란을 줄 수 있어서 이런 경우를 대비해 키 값을 `true`로 설정   
+23. paths : 소스 파일의 import 문에서 from 부분을 해석할 때 찾아야 하는 디렉터리를 설정   
 
-esModuleInterop : `chance`와 같은 AMD 방식을 전제로 구현된 라이브러리는 commonjs 방식으로 동작하는 타입스크립트 코드에 혼란을 줄 수 있어서 이런 경우를 대비해 키 값을 `true`로 설정
 
-sourceMap : 키 값이 true면 트랜스파일 디렉터리에는 .js 이외에도 .js.map 파일이 생성, 자바스크립트 코드가 타입스크립트 코드의 어디에 해당하는지 알려주는 지표, 디버깅 시 사용
 
-downlevellteration : generator 문법을 사용하기 위해 `true` 설정
 
-noImpliciAny : false 설정 시 타입을 지정하지 않더라도 문제로 인식하지 않음
 </details>
 
 ### 기본 타입
