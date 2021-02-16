@@ -1,0 +1,66 @@
+:root {
+    --border-color: #3f3f3f;
+    --button-color: #1CD5CD;
+    --smokywhite: #dddbd8;
+    --white: #fff;
+    --black: #555;
+    --document-bg-color: #68686850;
+    --bg-accent-color: #2d2d2d;
+    --component-bg-gradient: radial-gradient(circle, #646464e6 0%, #363636e6 100%);
+}
+
+body {
+    background:url('../assets/background.png') 100% 100%;
+    font-family: Roboto, Oxygen, sans-serif;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.app {
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header h1{
+    margin:0 0 20px 0;
+    font-size: 30px;
+}
+
+.control-button {
+    padding: 10px;
+    margin: 0 5px;
+    background: var(--button-color);
+    border-style: none;
+    cursor: pointer;
+    color:var(--white);
+    border: 1px solid var(--smokywhite);
+    border-radius: 5px;
+}
+
+.document {
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--document-bg-color);
+    /* Firefox */
+    scrollbar-width: 6px;
+    scrollbar-color: var(--bg-accent-color);
+    scrollbar-face-color: var(--accent-color);
+}
+
+.footer {
+    padding:20px 0;
+    text-align: center;
+}
