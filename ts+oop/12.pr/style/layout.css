@@ -48,6 +48,7 @@ body {
     color:var(--white);
     border: 1px solid var(--smokywhite);
     border-radius: 5px;
+    user-select: none;
 }
 
 .document {
