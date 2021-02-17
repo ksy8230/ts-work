@@ -15,6 +15,11 @@ class App {
 new App(document.querySelector('.document')! as HTMLElement);
 
 /**
+ * querySelector의 타입은 Element이다.
+ * 즉, querySelector는 Element를 상속하는 어떤 자식요소도 리턴할 수 있다.
+ */
+
+/**
  * App은 읽기만 가능한 PageComponent 멤버변수를 가지고 있고
  * App을 불러오면 PageComponent 인스턴스가 생성된 후 attachTo 메서드를 호출한다
  * App의 인자에는 PageComponent가 붙을 부모인자를 넣어준다
