@@ -159,9 +159,9 @@ type 객체 안에서 [] 배열 키를 사용하면 순차적으로 순회를 �
 ### 내 프로젝트 만들어보기
 - 레이아웃 + 세팅
 
-- 개별 아이템들의 공통 컨테이너 만들기 클래스
-- 공통 컨테이너 인스턴스를 만들어서 페이지에 붙이는 클래스
-- App.js에서 개별 아이템을 페이지에 붙이기
+- 개별 아이템들의 공통 컨테이너 만들기 클래스 [예시 코드](https://github.com/ksy8230/ts-work/commit/46a7793ad62d2f1a3014040cc6df168bfddc3da3#diff-ad6f928c3ab4cafe8090286787c7b931f01dbe073a946f7b3b9cb97f041b0cd3)
+- 공통 컨테이너 인스턴스를 만들어서 페이지에 붙이는 클래스 [예시 코드](https://github.com/ksy8230/ts-work/commit/46a7793ad62d2f1a3014040cc6df168bfddc3da3#diff-f5f1380b0f35cb602f6ebc4b3c6ecbc6b8222b03691e0c5f5912f9d698e6466e)
+- App.js에서 개별 아이템을 페이지에 붙이기 [예시 코드](https://github.com/ksy8230/ts-work/blob/46a7793ad62d2f1a3014040cc6df168bfddc3da3/ts%2Boop/12.pr/src/app.ts)
 
 ### 토막 지식
 #### DOM
