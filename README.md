@@ -100,12 +100,24 @@ tsconfig.json 옵션 설정
 2. 에러의 세부 사항을 전달하기 위해서 Error State를 사용하는 법
 
 ### 객체지향 프로그래밍
-[composition 예시 코드](https://github.com/ksy8230/ts-work/commit/7b0007a269e90f1deabe2da171271e007319451c)
 
-1. composition을 사용하는 이유는 클래스의 상속이 깊어질수록 부모 클래스를 수정하면 상속 받는 모든 자식들에게 영향을 미칠 수 있고, 타입스크립트에서는 한 가지 이상의 부모클래스를 상속 받을 수 없다.
-2. composition 방식을 사용해 확장성을 가진 클래스를 만든다.
-3. composition은 외부에서 주입 받아 사용하는 방식으로 `Dependency Injection`이라고 한다.
-4. 타입스크립트에서 `Dependency Injection`를 만드는 방법은 반복 혹은 공통적으로 사용하는 함수 이름을 인터페이스로 지정한 뒤 클래스에 확장(implements) 하여 사용한다.
+❔ 상속을 사용해야할 때?   
+부모클래스는 자식클래스의 일종일 때 사용한다. (부모 = 자식)   
+🔸 composition 사용법  
+부모 클래스를 자식 클래스에 extends 하여 사용한다.
+[상속 예시 코드](https://github.com/ksy8230/ts-work/commit/de971c9e64851d1b36333936760eb89279d5b21a)   
+
+❔ composition을 사용해야할 때?   
+오로지 기능을 상속해야 하는 경우에는 상속보다는 composition을 사용한다.   
+즉, 한 가지 이상의 부모클래스(기능)를 상속 받고 싶을 때 composition을 사용한다.   
+composition은 외부에서 주입 받아 사용하는 방식으로 `Dependency Injection`(디펜던시 인젝션)이라고 한다.     
+compsition을 사용하면 기능만 따로 뜯어낸 상태로 클래스를 구성할 수 있기 때문에 클래스의 확장성이 높아진다.   
+🔸 composition 사용법   
+타입스크립트에서 `Dependency Injection`를 만드는 방법은 반복 혹은 공통적으로 사용하는 함수 이름을 인터페이스로 지정한 뒤   
+클래스에 확장(implements) 하여 사용한다.   
+
+[composition 예시 코드](https://github.com/ksy8230/ts-work/commit/7b0007a269e90f1deabe2da171271e007319451c)   
+[참고 코드](https://medium.com/@rune0509sp/composition-%EC%9D%B4%EB%9E%80-44de09bf5fd)
 
 ### Type vs Interface 
 [예시 코드](https://github.com/ksy8230/ts-work/commit/2d0794602db0b47923eac3352e21d4d72e1d4836#diff-ecd99cca1a0053f031ca35fe1bf5a98d2c5748992c105b8ed4b078638fc7b055)   
@@ -141,6 +153,8 @@ type 객체 안에서 [] 배열 키를 사용하면 순차적으로 순회를 �
 
 [Omit 예시 코드](https://github.com/ksy8230/ts-work/commit/38c701d3b3d73f6ec7e10b76f83f3817bf12754f#diff-6c41de691989f1682772ee3169dc30950f3f3f884b092e2b398fdaa7f7bcc455)   
 지정한 타입에서 특정 타입만 제외시키고 지정해 주고 싶을 때 사용한다
+
+
 
 ### 내 프로젝트 만들어보기
 - 레이아웃 + 세팅
