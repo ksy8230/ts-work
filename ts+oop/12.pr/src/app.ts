@@ -1,38 +1,35 @@
-import { PageComponent } from './components/page/page.js';
+import { Composable, PageComponent } from './components/page/page.js';
+
 import { ImageComponent } from './components/page/item/image.js';
+import { Component } from './components/base.js';
 import { RecordComponent } from './components/page/item/record.js';
 import { NoteComponent } from './components/page/item/note.js';
 import { TodoComponent } from './components/page/item/todo.js';
+
 /**
  * ✨ node에서 import export를 사용할 땐 웹팩이 자동으로 번들을 해줘서 확장자 생략이 가능하지만
  * 여기는 웹팩이 없고 html에서 js를 불러올 때 type="module"을 지정했기 때문에 .js로 모듈을 불러와야 한다 :)
  */
 
 class App {
-  // private readonly page: PageComponent;
+  // page는 Component이면서 Composable이 가능한 요소
+  private readonly page: Component & Composable;
   constructor(appRoot: HTMLElement) {
-    // this.page = new PageComponent();
-    // this.page.attachTo(appRoot);
-    const page = new PageComponent();
-    page.attachTo(appRoot, 'beforeend');
+    this.page = new PageComponent();
 
-    const image = new ImageComponent(
-      'title..',
-      'https://picsum.photos/id/104/500/500',
-    );
-    image.attachTo(appRoot, 'beforeend');
+    const image = new ImageComponent('title..', 'https://picsum.photos/id/104/500/500');
+    this.page.addChild(image);
 
-    const record = new RecordComponent(
-      'record title...',
-      'https://www.youtube.com/Y476dImW2vI',
-    );
-    record.attachTo(appRoot, 'beforeend');
+    const record = new RecordComponent('record title...', 'https://www.youtube.com/watch?v=Y476dImW2vI');
+    this.page.addChild(record);
 
     const note = new NoteComponent('note title...', 'I am note body content');
-    note.attachTo(appRoot, 'beforeend');
+    this.page.addChild(note);
 
-    const todo = new TodoComponent('todo title...', 'I am todo content');
-    todo.attachTo(appRoot, 'beforeend');
+    const todo = new TodoComponent('note title...', 'I am note body content');
+    this.page.addChild(todo);
+
+    this.page.attachTo(appRoot);
   }
 }
 
