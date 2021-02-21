@@ -15,5 +15,8 @@ export class PageComponent extends BaseComponent<HTMLUListElement> implements Co
     const li = new ItemContainer();
     li.addChild(section);
     li.attachTo(this.element, 'beforeend');
+    li.setOnCloseListener(() => {
+      li.removeFrom(this.element);
+    });
   }
 }
