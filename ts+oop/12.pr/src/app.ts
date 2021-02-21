@@ -5,6 +5,7 @@ import { Component } from './components/base.js';
 import { RecordComponent } from './components/page/item/record.js';
 import { NoteComponent } from './components/page/item/note.js';
 import { TodoComponent } from './components/page/item/todo.js';
+import { AddPopup } from './components/popup/addPopup.js';
 
 /**
  * ✨ node에서 import export를 사용할 땐 웹팩이 자동으로 번들을 해줘서 확장자 생략이 가능하지만
@@ -28,6 +29,22 @@ class App {
 
     const todo = new TodoComponent('note title...', 'I am note body content');
     this.page.addChild(todo);
+
+    /**
+     * 추가 팝업
+     */
+    const imageButton = document.querySelector('#new-photo')! as HTMLButtonElement;
+    imageButton.onclick = () => {
+      const addPopup = new AddPopup();
+      addPopup.attachTo(document.body);
+      addPopup.setOnSubmitListener(() => {
+        // 섹션 추가
+        addPopup.removeFrom(document.body);
+      });
+      addPopup.setOnCloseListener(() => {
+        addPopup.removeFrom(document.body);
+      });
+    };
 
     this.page.attachTo(appRoot);
   }
