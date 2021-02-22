@@ -3,11 +3,13 @@ import { Composable, PageComponent } from './components/page/page.js';
 import { ImageComponent } from './components/page/item/image.js';
 import { Component } from './components/base.js';
 import { RecordComponent } from './components/page/item/record.js';
-import { NoteComponent } from './components/page/item/note.js';
+//import { NoteComponent } from './components/page/item/note.js';
 import { TodoComponent } from './components/page/item/todo.js';
 import { AddPopup } from './components/popup/addPopup.js';
-// import { MediaSection } from './components/popup/input/media-input.js';
+import { NoteComponent } from './components/page/item/note.js';
 import { TextSection } from './components/popup/input/text-input.js';
+import { MediaSection } from './components/popup/input/media-input.js';
+//import { TextSection } from './components/popup/input/text-input.js';
 
 /**
  * ✨ node에서 import export를 사용할 땐 웹팩이 자동으로 번들을 해줘서 확장자 생략이 가능하지만
@@ -20,23 +22,23 @@ class App {
   constructor(appRoot: HTMLElement, popupRoot: HTMLElement) {
     this.page = new PageComponent();
 
-    const image = new ImageComponent('title..', 'https://picsum.photos/id/104/500/500');
-    this.page.addChild(image);
+    //const image = new ImageComponent('title..', 'https://picsum.photos/id/104/500/500');
+    //this.page.addChild(image);
 
-    const record = new RecordComponent('record title...', 'https://www.youtube.com/watch?v=Y476dImW2vI');
-    this.page.addChild(record);
+    //const record = new RecordComponent('record title...', 'https://www.youtube.com/watch?v=Y476dImW2vI');
+    //this.page.addChild(record);
 
     //const note = new NoteComponent('note title...', 'I am note body content');
     //this.page.addChild(note);
 
-    const todo = new TodoComponent('note title...', 'I am note body content');
-    this.page.addChild(todo);
+    //const todo = new TodoComponent('note title...', 'I am note body content');
+    //this.page.addChild(todo);
 
     /**
-     * 추가 팝업
+     * 노트 추가 팝업
      */
-    const imageButton = document.querySelector('#new-photo')! as HTMLButtonElement;
-    imageButton.onclick = () => {
+    const noteButton = document.querySelector('#new-note')! as HTMLButtonElement;
+    noteButton.onclick = () => {
       const addPopup = new AddPopup();
       const inputSection = new TextSection();
       addPopup.addChild(inputSection);
@@ -45,6 +47,66 @@ class App {
       addPopup.setOnSubmitListener(() => {
         const note = new NoteComponent(inputSection.title, inputSection.body);
         this.page.addChild(note);
+        addPopup.removeFrom(popupRoot);
+      });
+      addPopup.setOnCloseListener(() => {
+        addPopup.removeFrom(popupRoot);
+      });
+    };
+
+    /**
+     * 동영상 추가 팝업
+     */
+    const recordButton = document.querySelector('#new-record')! as HTMLButtonElement;
+    recordButton.onclick = () => {
+      const addPopup = new AddPopup();
+      const inputSection = new MediaSection();
+      addPopup.addChild(inputSection);
+      addPopup.attachTo(popupRoot);
+
+      addPopup.setOnSubmitListener(() => {
+        const record = new RecordComponent(inputSection.title, inputSection.url);
+        this.page.addChild(record);
+        addPopup.removeFrom(popupRoot);
+      });
+      addPopup.setOnCloseListener(() => {
+        addPopup.removeFrom(popupRoot);
+      });
+    };
+
+    /**
+     * 이미지 추가 팝업
+     */
+    const imageButton = document.querySelector('#new-photo')! as HTMLButtonElement;
+    imageButton.onclick = () => {
+      const addPopup = new AddPopup();
+      const inputSection = new MediaSection();
+      addPopup.addChild(inputSection);
+      addPopup.attachTo(popupRoot);
+
+      addPopup.setOnSubmitListener(() => {
+        const image = new ImageComponent(inputSection.title, inputSection.url);
+        this.page.addChild(image);
+        addPopup.removeFrom(popupRoot);
+      });
+      addPopup.setOnCloseListener(() => {
+        addPopup.removeFrom(popupRoot);
+      });
+    };
+
+    /**
+     * todo 추가 팝업
+     */
+    const todoButton = document.querySelector('#new-todo')! as HTMLButtonElement;
+    todoButton.onclick = () => {
+      const addPopup = new AddPopup();
+      const inputSection = new TextSection();
+      addPopup.addChild(inputSection);
+      addPopup.attachTo(popupRoot);
+
+      addPopup.setOnSubmitListener(() => {
+        const todo = new TodoComponent(inputSection.title, inputSection.body);
+        this.page.addChild(todo);
         addPopup.removeFrom(popupRoot);
       });
       addPopup.setOnCloseListener(() => {

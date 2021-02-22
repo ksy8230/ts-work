@@ -17,11 +17,11 @@ export class MediaSection extends BaseComponent<HTMLElement> {
   }
 
   get title(): string {
-    const element = this.element.querySelector('.title')! as HTMLInputElement;
+    const element = this.element.querySelector('#title')! as HTMLInputElement;
     return element.value;
   }
   get url(): string {
-    const element = this.element.querySelector('.url')! as HTMLInputElement;
+    const element = this.element.querySelector('#url')! as HTMLInputElement;
     return element.value;
   }
 }
