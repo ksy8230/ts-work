@@ -6,6 +6,8 @@ import { RecordComponent } from './components/page/item/record.js';
 import { NoteComponent } from './components/page/item/note.js';
 import { TodoComponent } from './components/page/item/todo.js';
 import { AddPopup } from './components/popup/addPopup.js';
+// import { MediaSection } from './components/popup/input/media-input.js';
+import { TextSection } from './components/popup/input/text-input.js';
 
 /**
  * ✨ node에서 import export를 사용할 땐 웹팩이 자동으로 번들을 해줘서 확장자 생략이 가능하지만
@@ -15,7 +17,7 @@ import { AddPopup } from './components/popup/addPopup.js';
 class App {
   // page는 Component이면서 Composable이 가능한 요소
   private readonly page: Component & Composable;
-  constructor(appRoot: HTMLElement) {
+  constructor(appRoot: HTMLElement, popupRoot: HTMLElement) {
     this.page = new PageComponent();
 
     const image = new ImageComponent('title..', 'https://picsum.photos/id/104/500/500');
@@ -24,8 +26,8 @@ class App {
     const record = new RecordComponent('record title...', 'https://www.youtube.com/watch?v=Y476dImW2vI');
     this.page.addChild(record);
 
-    const note = new NoteComponent('note title...', 'I am note body content');
-    this.page.addChild(note);
+    //const note = new NoteComponent('note title...', 'I am note body content');
+    //this.page.addChild(note);
 
     const todo = new TodoComponent('note title...', 'I am note body content');
     this.page.addChild(todo);
@@ -36,13 +38,17 @@ class App {
     const imageButton = document.querySelector('#new-photo')! as HTMLButtonElement;
     imageButton.onclick = () => {
       const addPopup = new AddPopup();
-      addPopup.attachTo(document.body);
+      const inputSection = new TextSection();
+      addPopup.addChild(inputSection);
+      addPopup.attachTo(popupRoot);
+
       addPopup.setOnSubmitListener(() => {
-        // 섹션 추가
-        addPopup.removeFrom(document.body);
+        const note = new NoteComponent(inputSection.title, inputSection.body);
+        this.page.addChild(note);
+        addPopup.removeFrom(popupRoot);
       });
       addPopup.setOnCloseListener(() => {
-        addPopup.removeFrom(document.body);
+        addPopup.removeFrom(popupRoot);
       });
     };
 
@@ -50,7 +56,7 @@ class App {
   }
 }
 
-new App(document.querySelector('.document')! as HTMLElement);
+new App(document.querySelector('.document')! as HTMLElement, document.body);
 
 /**
  * querySelector의 타입은 Element이다.
