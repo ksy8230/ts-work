@@ -10,12 +10,12 @@ export class ItemContainer extends BaseComponent<HTMLElement> implements Composa
   constructor() {
     super(
       `<li class="page__item">
-            <button class="page__item__close">❎</button>
-            <div class="page__item__body"></div>
+      <div class="page__item__body"></div>
+      <button class="close">❎</button>
         </li>`,
     );
     // 생성자 호출 시 해당 닫기 버튼을 가져온다
-    const removeButton = this.element.querySelector('.page__item__close')! as HTMLButtonElement;
+    const removeButton = this.element.querySelector('.close')! as HTMLButtonElement;
     // 해당 버튼이 클릭이 되면 전달 받은 콜백 함수 호출
     removeButton.onclick = () => {
       this.closeListener && this.closeListener();

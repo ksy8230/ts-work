@@ -91,3 +91,35 @@ body {
     border-radius: 0.5rem;
     box-shadow: 2px 2px 20px var(--shadow-color);
 }
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+
+/* -- PAGE ITEM -- */
+.page__item {
+    margin: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 6px var(--shadow-color);
+    background: var(--bg-accent-color);
+    background: var(--component-bg-gradient);
+  }
+
+  .close {
+    align-self: flex-end;
+    padding: 0.2rem;
+    color: var(--accent-color);
+    font-size: 28px;
+    font-weight: bold;
+    margin: 3px;
+    transition: color 250ms ease;
+  }
+
+  .page__item__body {
+    width: 100%;
+  }
+  

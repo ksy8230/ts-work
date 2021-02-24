@@ -9,13 +9,13 @@ export class AddPopup extends BaseComponent<HTMLElement> implements Composable {
   constructor() {
     super(`<dialog class="dialog">
                 <div class="dialog__container">
-                <button class="popup-close">❎</button>
+                <button class="close">❎</button>
                 <div class="popup-body"></div>
                 <button class="popup-submit">Submit✅</button>
                 </div>
             </dialog>
             `);
-    const closeButton = this.element.querySelector('.popup-close')! as HTMLButtonElement;
+    const closeButton = this.element.querySelector('.close')! as HTMLButtonElement;
     closeButton.onclick = () => {
       this.clickCloseListener && this.clickCloseListener();
     };
