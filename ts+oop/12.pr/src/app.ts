@@ -1,120 +1,68 @@
 import { Composable, PageComponent } from './components/page/page.js';
-
-import { ImageComponent } from './components/page/item/image.js';
 import { Component } from './components/base.js';
-import { RecordComponent } from './components/page/item/record.js';
-//import { NoteComponent } from './components/page/item/note.js';
-import { TodoComponent } from './components/page/item/todo.js';
 import { AddPopup } from './components/popup/addPopup.js';
+
 import { NoteComponent } from './components/page/item/note.js';
+import { ImageComponent } from './components/page/item/image.js';
+import { RecordComponent } from './components/page/item/record.js';
+import { TodoComponent } from './components/page/item/todo.js';
+
 import { TextSection } from './components/popup/input/text-input.js';
 import { MediaSection } from './components/popup/input/media-input.js';
-//import { TextSection } from './components/popup/input/text-input.js';
 
 /**
  * ✨ node에서 import export를 사용할 땐 웹팩이 자동으로 번들을 해줘서 확장자 생략이 가능하지만
  * 여기는 웹팩이 없고 html에서 js를 불러올 때 type="module"을 지정했기 때문에 .js로 모듈을 불러와야 한다 :)
  */
 
+/**
+ * TextSection과 MediaSection 중 하나의 생성자 만드는 타입
+ */
+type InputSectionType<T = TextSection | MediaSection> = {
+  new (): T;
+};
+
+/**
+ * TextSection과 MediaSection 중 하나의 타입을 input 인자로 받아서 컴포넌트를 만들어주는 타입
+ */
+type MakeSectionType<T = TextSection | MediaSection> = (input: T) => Component;
+
 class App {
   // page는 Component이면서 Composable이 가능한 요소
   private readonly page: Component & Composable;
-  constructor(appRoot: HTMLElement, popupRoot: HTMLElement) {
+
+  constructor(appRoot: HTMLElement, private popupRoot: HTMLElement) {
     this.page = new PageComponent();
 
-    //const image = new ImageComponent('title..', 'https://picsum.photos/id/104/500/500');
-    //this.page.addChild(image);
-
-    //const record = new RecordComponent('record title...', 'https://www.youtube.com/watch?v=Y476dImW2vI');
-    //this.page.addChild(record);
-
-    //const note = new NoteComponent('note title...', 'I am note body content');
-    //this.page.addChild(note);
-
-    //const todo = new TodoComponent('note title...', 'I am note body content');
-    //this.page.addChild(todo);
-
-    /**
-     * 노트 추가 팝업
-     */
-    const noteButton = document.querySelector('#new-note')! as HTMLButtonElement;
-    noteButton.onclick = () => {
-      const addPopup = new AddPopup();
-      const inputSection = new TextSection();
-      addPopup.addChild(inputSection);
-      addPopup.attachTo(popupRoot);
-
-      addPopup.setOnSubmitListener(() => {
-        const note = new NoteComponent(inputSection.title, inputSection.body);
-        this.page.addChild(note);
-        addPopup.removeFrom(popupRoot);
-      });
-      addPopup.setOnCloseListener(() => {
-        addPopup.removeFrom(popupRoot);
-      });
-    };
-
-    /**
-     * 동영상 추가 팝업
-     */
-    const recordButton = document.querySelector('#new-record')! as HTMLButtonElement;
-    recordButton.onclick = () => {
-      const addPopup = new AddPopup();
-      const inputSection = new MediaSection();
-      addPopup.addChild(inputSection);
-      addPopup.attachTo(popupRoot);
-
-      addPopup.setOnSubmitListener(() => {
-        const record = new RecordComponent(inputSection.title, inputSection.url);
-        this.page.addChild(record);
-        addPopup.removeFrom(popupRoot);
-      });
-      addPopup.setOnCloseListener(() => {
-        addPopup.removeFrom(popupRoot);
-      });
-    };
-
-    /**
-     * 이미지 추가 팝업
-     */
-    const imageButton = document.querySelector('#new-photo')! as HTMLButtonElement;
-    imageButton.onclick = () => {
-      const addPopup = new AddPopup();
-      const inputSection = new MediaSection();
-      addPopup.addChild(inputSection);
-      addPopup.attachTo(popupRoot);
-
-      addPopup.setOnSubmitListener(() => {
-        const image = new ImageComponent(inputSection.title, inputSection.url);
-        this.page.addChild(image);
-        addPopup.removeFrom(popupRoot);
-      });
-      addPopup.setOnCloseListener(() => {
-        addPopup.removeFrom(popupRoot);
-      });
-    };
-
-    /**
-     * todo 추가 팝업
-     */
-    const todoButton = document.querySelector('#new-todo')! as HTMLButtonElement;
-    todoButton.onclick = () => {
-      const addPopup = new AddPopup();
-      const inputSection = new TextSection();
-      addPopup.addChild(inputSection);
-      addPopup.attachTo(popupRoot);
-
-      addPopup.setOnSubmitListener(() => {
-        const todo = new TodoComponent(inputSection.title, inputSection.body);
-        this.page.addChild(todo);
-        addPopup.removeFrom(popupRoot);
-      });
-      addPopup.setOnCloseListener(() => {
-        addPopup.removeFrom(popupRoot);
-      });
-    };
+    this.makePopupContent('#new-note', TextSection, (input) => new NoteComponent(input.title, input.body));
+    this.makePopupContent('#new-photo', MediaSection, (input) => new ImageComponent(input.title, input.url));
+    this.makePopupContent('#new-record', MediaSection, (input) => new RecordComponent(input.title, input.url));
+    this.makePopupContent('#new-todo', TextSection, (input) => new TodoComponent(input.title, input.body));
 
     this.page.attachTo(appRoot);
+  }
+
+  private makePopupContent<T extends TextSection | MediaSection>(
+    selector: string,
+    InputSection: InputSectionType<T>,
+    makeSection: MakeSectionType<T>,
+  ) {
+    const noteButton = document.querySelector(selector)! as HTMLButtonElement;
+    noteButton.onclick = () => {
+      const addPopup = new AddPopup();
+      const input = new InputSection();
+      addPopup.addChild(input);
+      addPopup.attachTo(this.popupRoot);
+
+      addPopup.setOnSubmitListener(() => {
+        const note = makeSection(input);
+        this.page.addChild(note);
+        addPopup.removeFrom(this.popupRoot);
+      });
+      addPopup.setOnCloseListener(() => {
+        addPopup.removeFrom(this.popupRoot);
+      });
+    };
   }
 }
 
