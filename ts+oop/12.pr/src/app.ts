@@ -39,6 +39,15 @@ class App {
     this.makePopupContent('#new-record', MediaSection, (input) => new RecordComponent(input.title, input.url));
     this.makePopupContent('#new-todo', TextSection, (input) => new TodoComponent(input.title, input.body));
 
+    this.page.addChild(new ImageComponent('image title 1', 'https://picsum.photos/seed/picsum/200/300'));
+    this.page.addChild(new RecordComponent('video title 1', 'https://www.youtube.com/watch?v=V60QQDA57SA'));
+    this.page.addChild(new NoteComponent('note title 1', 'this is note contents'));
+    this.page.addChild(new TodoComponent('todo title 1', 'this is todo contents'));
+    this.page.addChild(new TodoComponent('todo title 2', 'this is todo contents'));
+    this.page.addChild(new RecordComponent('video title 1', 'https://www.youtube.com/watch?v=V60QQDA57SA'));
+    this.page.addChild(new NoteComponent('note title 1', 'this is note contents'));
+    this.page.addChild(new TodoComponent('todo title 1', 'this is todo contents'));
+
     this.page.attachTo(appRoot);
   }
 
