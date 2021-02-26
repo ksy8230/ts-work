@@ -1,5 +1,5 @@
-import { Composable, PageComponent } from './components/page/page.js';
-import { Component } from './components/base.js';
+import { PageComponent } from './components/page/page.js';
+import { Component, Composable } from './components/base.js';
 import { AddPopup } from './components/popup/addPopup.js';
 
 import { NoteComponent } from './components/page/item/note.js';
@@ -44,9 +44,9 @@ class App {
     this.page.addChild(new NoteComponent('note title 1', 'this is note contents'));
     this.page.addChild(new TodoComponent('todo title 1', 'this is todo contents'));
     this.page.addChild(new TodoComponent('todo title 2', 'this is todo contents'));
-    this.page.addChild(new RecordComponent('video title 1', 'https://www.youtube.com/watch?v=V60QQDA57SA'));
-    this.page.addChild(new NoteComponent('note title 1', 'this is note contents'));
-    this.page.addChild(new TodoComponent('todo title 1', 'this is todo contents'));
+    this.page.addChild(new RecordComponent('video title 2', 'https://www.youtube.com/watch?v=V60QQDA57SA'));
+    this.page.addChild(new NoteComponent('note title 2', 'this is note contents'));
+    this.page.addChild(new TodoComponent('todo title 3', 'this is todo contents'));
 
     this.page.attachTo(appRoot);
   }

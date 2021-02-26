@@ -1,12 +1,12 @@
-import { BaseComponent, Component } from '../base.js';
+import { BaseComponent, Component, Composable, Section } from '../base.js';
 import { ItemComponent } from './container.js';
-import { DragState } from './container.js';
-export interface Composable {
-  addChild(child: Component): void;
-}
 
 // ul 컴포넌트
 export class PageComponent extends BaseComponent<HTMLUListElement> implements Composable {
+  private children = new Set<Section>();
+  private dropTarget?: Section;
+  private dragTarget?: Section;
+
   constructor() {
     super('<ul class="page"></ul>');
 
@@ -24,20 +24,51 @@ export class PageComponent extends BaseComponent<HTMLUListElement> implements Co
     li.attachTo(this.element, 'beforeend');
     li.setOnCloseListener(() => {
       li.removeFrom(this.element);
+      this.children.delete(li);
     });
-    li.setOnDragStateListener((target: Component, state: DragState) => {
-      console.log(target, state);
+    this.children.add(li);
+    li.setOnDragStateListener((target: Section, state) => {
+      switch (state) {
+        case 'start':
+          this.dragTarget = target;
+          this.updateSections('mute');
+          break;
+        case 'end':
+          this.dragTarget = undefined;
+          this.updateSections('unmute');
+          break;
+        case 'enter':
+          this.dropTarget = target;
+          console.log('enter', target);
+          break;
+        case 'leave':
+          this.dropTarget = undefined;
+          console.log('leave', target);
+          break;
+        default:
+          throw new Error(`unsupported state ${state}`);
+      }
+    });
+  }
+
+  private updateSections(state: 'mute' | 'unmute'): void {
+    this.children.forEach((section: Section) => {
+      section.muteChildren(state);
     });
   }
 
   // 타겟으로 드래그가 올라왔을 때 이벤트
   onDragOver(event: DragEvent): void {
     event.preventDefault();
-    //console.log('onDragOver', event);
   }
   // 타겟으로 드래그가 떨궈졌을 때
   onDrop(event: DragEvent): void {
     event.preventDefault();
-    //console.log('onDrop', event);
+    // 위치 바꾸기
+    if (!this.dropTarget) return;
+    if (this.dropTarget && this.dragTarget && this.dropTarget !== this.dragTarget) {
+      this.dragTarget?.removeFrom(this.element);
+      this.dropTarget?.attach(this.dragTarget, 'beforebegin');
+    }
   }
 }

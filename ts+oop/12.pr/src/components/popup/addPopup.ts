@@ -1,5 +1,4 @@
-import { BaseComponent, Component } from '../base.js';
-import { Composable } from '../page/page.js';
+import { BaseComponent, Component, Composable } from '../base.js';
 
 type ClickLister = () => void;
 

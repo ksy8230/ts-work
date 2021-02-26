@@ -123,3 +123,9 @@ body {
     width: 100%;
   }
   
+
+/* ---drag and drop--- */
+
+.mute-children * {
+    pointer-events: none;
+}

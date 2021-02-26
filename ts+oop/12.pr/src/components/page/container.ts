@@ -1,5 +1,4 @@
-import { BaseComponent, Component } from '../base.js';
-import { Composable } from './page.js';
+import { BaseComponent, Component, Section } from '../base.js';
 
 // 아이템 컴포넌트를 받아서 (li)로 감싸주는 컴포넌트
 type onCloseListener = () => void;
@@ -13,7 +12,7 @@ export type DragState = 'start' | 'end' | 'enter' | 'leave';
 export type OnDragStateListener<T extends Component> = (target: T, state: DragState) => void;
 
 // li 컴포넌트
-export class ItemComponent extends BaseComponent<HTMLElement> implements Composable {
+export class ItemComponent extends BaseComponent<HTMLElement> implements Section {
   // 외부로부터 전달 받은 콜백 함수를 저장할 닫기 리스너 저장
   private closeListener: onCloseListener | undefined;
   private dragListener: OnDragStateListener<ItemComponent> | undefined;
@@ -82,5 +81,13 @@ export class ItemComponent extends BaseComponent<HTMLElement> implements Composa
   // 내가 누군지, 내 상태가 어떤지 외부에서 사용할 때 알려주는 이벤트
   setOnDragStateListener(listener: OnDragStateListener<ItemComponent>): void {
     this.dragListener = listener;
+  }
+
+  muteChildren(state: 'mute' | 'unmute'): void {
+    if (state === 'mute') {
+      this.element.classList.add('mute-children');
+    } else {
+      this.element.classList.remove('mute-children');
+    }
   }
 }
