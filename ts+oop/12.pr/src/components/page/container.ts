@@ -12,10 +12,11 @@ export type DragState = 'start' | 'end' | 'enter' | 'leave';
  */
 export type OnDragStateListener<T extends Component> = (target: T, state: DragState) => void;
 
-export class ItemContainer extends BaseComponent<HTMLElement> implements Composable {
+// li 컴포넌트
+export class ItemComponent extends BaseComponent<HTMLElement> implements Composable {
   // 외부로부터 전달 받은 콜백 함수를 저장할 닫기 리스너 저장
   private closeListener: onCloseListener | undefined;
-  private dragListener: OnDragStateListener<ItemContainer> | undefined;
+  private dragListener: OnDragStateListener<ItemComponent> | undefined;
 
   constructor() {
     super(
@@ -30,6 +31,7 @@ export class ItemContainer extends BaseComponent<HTMLElement> implements Composa
     removeButton.onclick = () => {
       this.closeListener && this.closeListener();
     };
+
     this.element.addEventListener('dragstart', (event: DragEvent) => {
       this.onDragStart && this.onDragStart(event);
     });
@@ -78,7 +80,7 @@ export class ItemContainer extends BaseComponent<HTMLElement> implements Composa
   }
 
   // 내가 누군지, 내 상태가 어떤지 외부에서 사용할 때 알려주는 이벤트
-  setOnDragStateListener(listener: OnDragStateListener<ItemContainer>): void {
+  setOnDragStateListener(listener: OnDragStateListener<ItemComponent>): void {
     this.dragListener = listener;
   }
 }
