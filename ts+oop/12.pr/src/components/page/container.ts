@@ -90,4 +90,8 @@ export class ItemComponent extends BaseComponent<HTMLElement> implements Section
       this.element.classList.remove('mute-children');
     }
   }
+
+  getBoundingRect(): DOMRect {
+    return this.element.getBoundingClientRect();
+  }
 }

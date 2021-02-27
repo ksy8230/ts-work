@@ -14,6 +14,7 @@ export interface Composable {
 
 export interface Section extends Component, Composable {
   muteChildren(state: 'mute' | 'unmute'): void;
+  getBoundingRect(): DOMRect;
 }
 
 export class BaseComponent<T extends HTMLElement> implements Component {

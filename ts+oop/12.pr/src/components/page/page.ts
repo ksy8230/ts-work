@@ -67,8 +67,14 @@ export class PageComponent extends BaseComponent<HTMLUListElement> implements Co
     // 위치 바꾸기
     if (!this.dropTarget) return;
     if (this.dropTarget && this.dragTarget && this.dropTarget !== this.dragTarget) {
-      this.dragTarget?.removeFrom(this.element);
-      this.dropTarget?.attach(this.dragTarget, 'beforebegin');
+      console.log('this.dropTarget=', this.dropTarget);
+      console.log('this.dragTarget=', this.dragTarget);
+
+      const dropY = event.clientY;
+      console.log('드립시키는 y 좌표', dropY);
+      const srcElement = this.dragTarget.getBoundingRect();
+      console.log('드래그 중인 엘레먼트의 원래 y 좌표', srcElement.y);
+      this.dropTarget?.attach(this.dragTarget, dropY < srcElement.y ? 'beforebegin' : 'afterend');
     }
   }
 }
