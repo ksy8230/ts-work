@@ -19,7 +19,7 @@ import { MediaSection } from './components/popup/input/media-input.js';
  * TextSection과 MediaSection 중 하나의 생성자 만드는 타입
  */
 type InputSectionType<T = TextSection | MediaSection> = {
-  new (): T;
+  new (...args: any[]): T;
 };
 
 /**

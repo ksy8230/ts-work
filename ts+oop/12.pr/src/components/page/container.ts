@@ -1,3 +1,4 @@
+import { EnableDragging } from '../../decorators/draggable.js';
 import { BaseComponent, Component, Section } from '../base.js';
 
 // 아이템 컴포넌트를 받아서 (li)로 감싸주는 컴포넌트
@@ -12,6 +13,8 @@ export type DragState = 'start' | 'end' | 'enter' | 'leave';
 export type OnDragStateListener<T extends Component> = (target: T, state: DragState) => void;
 
 // li 컴포넌트
+@EnableDragging
+// @EnableHover
 export class ItemComponent extends BaseComponent<HTMLElement> implements Section {
   // 외부로부터 전달 받은 콜백 함수를 저장할 닫기 리스너 저장
   private closeListener: onCloseListener | undefined;
@@ -30,13 +33,14 @@ export class ItemComponent extends BaseComponent<HTMLElement> implements Section
     removeButton.onclick = () => {
       this.closeListener && this.closeListener();
     };
-
+    /*
     this.element.addEventListener('dragstart', (event: DragEvent) => {
       this.onDragStart && this.onDragStart(event);
     });
     this.element.addEventListener('dragend', (event: DragEvent) => {
       this.onDragEnd && this.onDragEnd(event);
     });
+    */
     this.element.addEventListener('dragenter', (event: DragEvent) => {
       this.onDragEnter && this.onDragEnter(event);
     });

@@ -2,6 +2,7 @@ import { BaseComponent, Component, Composable, Section } from '../base.js';
 import { ItemComponent } from './container.js';
 
 // ul 컴포넌트
+// @EnableDrop
 export class PageComponent extends BaseComponent<HTMLUListElement> implements Composable {
   private children = new Set<Section>();
   private dropTarget?: Section;
