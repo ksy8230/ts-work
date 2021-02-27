@@ -5,7 +5,7 @@
     --white: #fff;
     --black: #555;
     --document-bg-color: #68686850;
-    --bg-accent-color: #2d2d2d;
+    --bg-accent-color: #34D7C0;
     --component-bg-gradient: radial-gradient(circle, #646464e6 0%, #363636e6 100%);
 }
 
@@ -129,3 +129,21 @@ body {
 .mute-children * {
     pointer-events: none;
 }
+.drag-start {
+    transform: rotate(1deg);
+    animation: drag_start 250ms;
+    opacity: 0.2;
+}
+
+.drop-start {
+    border: 2px solid var(--bg-accent-color);
+  }
+
+@keyframes drag_start {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }

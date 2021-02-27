@@ -76,5 +76,7 @@ export class PageComponent extends BaseComponent<HTMLUListElement> implements Co
       console.log('드래그 중인 엘레먼트의 원래 y 좌표', srcElement.y);
       this.dropTarget?.attach(this.dragTarget, dropY < srcElement.y ? 'beforebegin' : 'afterend');
     }
+
+    this.dropTarget.onDropped();
   }
 }

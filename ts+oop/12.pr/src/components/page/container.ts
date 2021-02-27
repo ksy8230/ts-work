@@ -57,18 +57,27 @@ export class ItemComponent extends BaseComponent<HTMLElement> implements Section
   // (타겟 입장) 드래그 시작 이벤트
   onDragStart(_: DragEvent): void {
     this.notifyDragObserver('start');
+    this.element.classList.add('drag-start');
   }
   // (타겟 입장) 드래그 끝 이벤트
   onDragEnd(_: DragEvent): void {
     this.notifyDragObserver('end');
+    this.element.classList.remove('drag-start');
   }
   // (엔터 입장) 드래그 들어옴
   onDragEnter(_: DragEvent): void {
     this.notifyDragObserver('enter');
+    this.element.classList.add('drop-start');
   }
   // (엔터 입장) 드래그 나감
   onDragLeave(_: DragEvent): void {
     this.notifyDragObserver('leave');
+    this.element.classList.remove('drop-start');
+  }
+
+  // 드랍 끝
+  onDropped(): void {
+    this.element.classList.remove('drop-start');
   }
 
   /**
